@@ -6,9 +6,7 @@
  **/
 package top.yuan67.webapp.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -20,13 +18,23 @@ public interface TableMapper {
    * 建表
    * @param sql
    */
+  @Insert("${sql}")
   void createTable(String sql);
+  
+  /**
+   * 新增表字段
+   * @param name
+   * @param col
+   * @param type
+   */
+  @Insert("ALTER TABLE ${name} ADD ${col} ${type}")
+  void addColumn(String name, String col, String type);
   
   /**
    * 删表
    * @param name
    */
-  @Update("DROP TABLE IF EXISTS ${name}")
+  @Delete("DROP TABLE IF EXISTS ${name}")
   void delByTableName(String name);
   
   /**
@@ -34,7 +42,7 @@ public interface TableMapper {
    * @param name
    * @param column
    */
-  @Update("ALTER TABLE ${name} DROP COLUMN ${column}")
+  @Delete("ALTER TABLE ${name} DROP COLUMN ${column}")
   void delByTableColumn(String name, String column);
   
   /**

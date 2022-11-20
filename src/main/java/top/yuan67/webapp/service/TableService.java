@@ -25,4 +25,6 @@ public interface TableService {
   Map<String, Object> updateTableNameColumn(String name, String oldCol, String newCol, String type);
   
   String delByTableColumn(String name, String column);
+  
+  String addColumn(String name, String col, String type);
 }
