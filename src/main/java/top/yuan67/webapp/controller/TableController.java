@@ -24,7 +24,7 @@ public class TableController {
   
   /**
    * 建表
-   * @param name
+   * @param name 表名
    * @return
    */
   @GetMapping("/create")
@@ -34,16 +34,18 @@ public class TableController {
   
   /**
    * 删表
-   * @param name
+   * @param name 表名
    * @return
    */
   @GetMapping("/delByTableName")
   public String delByTableName(String name){
     return tableService.delByTableName(name);
   }
+  
   /**
    * 删表中的字段
-   * @param name
+   * @param name 表名
+   * @param column 字段名
    * @return
    */
   @GetMapping("/delByTableColumn")
@@ -53,8 +55,8 @@ public class TableController {
   
   /**
    * 修改表名
-   * @param oldName
-   * @param newName
+   * @param oldName 原表名
+   * @param newName 新表名
    * @return
    */
   @GetMapping("/updateTableName")
@@ -64,9 +66,9 @@ public class TableController {
   
   /**
    * 修改表字段
-   * @param name
-   * @param oldCol
-   * @param newCol
+   * @param name 表名
+   * @param oldCol 原字段名
+   * @param newCol 新字段名
    * @return
    */
   @GetMapping("/updateTableNameColumn")
@@ -86,6 +88,7 @@ public class TableController {
   
   /**
    * 获取某个表中所有的字段信息
+   * @param name 表名
    * @return
    */
   @GetMapping("/findAllTableColumn/{name}")
