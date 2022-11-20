@@ -23,13 +23,25 @@ public class TableController {
   private TableService tableService;
   
   /**
-   * 建表
+   * 新增表
    * @param name 表名
    * @return
    */
   @GetMapping("/create")
   public String create(String name){
     return tableService.create(name);
+  }
+  
+  /**
+   * 新增表字段
+   * @param name 表名
+   * @param col 新增的字段名
+   * @param type 新增字段名的类型
+   * @return
+   */
+  @GetMapping("/addColumn")
+  public String addColumn(String name, String col, String type){
+    return tableService.addColumn(name, col, type);
   }
   
   /**

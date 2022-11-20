@@ -24,7 +24,7 @@ public class TableServiceImpl implements TableService {
   @Override
   public String create(String name) {
     try {
-      String sql = "CREATE TABLE (" + name + "`id` bigint NOT NULL AUTO_INCREMENT," +
+      String sql = "CREATE TABLE " + name + " (`id` bigint NOT NULL AUTO_INCREMENT," +
           "`role_EN` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL," +
           "`role_ZH` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL," +
           "`create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP," +
@@ -106,5 +106,16 @@ public class TableServiceImpl implements TableService {
       return "将["+ name + "]表中的"+column+"字段删除失败!";
     }
     return "将["+ name + "]表中的"+column+"字段删除成功!";
+  }
+  
+  @Override
+  public String addColumn(String name, String col, String type) {
+    try {
+      tableMapper.addColumn(name, col, type);
+    }catch (Exception e){
+      System.out.println("Exception:将["+ name + "]表中新增"+col+"字段失败!" + e);
+      return "将["+ name + "]表中的"+col+"字段新增失败!";
+    }
+    return "将["+ name + "]表中的"+col+"字段新增成功!";
   }
 }
